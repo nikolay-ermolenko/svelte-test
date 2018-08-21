@@ -1,0 +1,25 @@
+<h1>Hello,
+    <b>{name}</b>
+</h1>
+<Button />
+<Button />
+<script>
+    import Button from './cmp/button/Button.html';
+
+    export default {
+        components: {Button},
+        data() {
+            return {
+                name: 'My Name'
+            };
+        },
+        computed: { }
+    };
+</script>
+
+
+<style>
+    b {
+        color: red;
+    }
+</style>
