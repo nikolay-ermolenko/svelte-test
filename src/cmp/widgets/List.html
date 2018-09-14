@@ -1,0 +1,153 @@
+<div class="ele-strip">
+    {#if loading}
+        <ul>
+            <li class="anc-bor">
+                <Loader opacity=".4" />
+            </li>
+        </ul>
+    {:else}
+        <ul>
+            <li class="anc-bor">
+                Меню тут
+            </li>
+        </ul>
+    {/if}
+</div>
+<div class="village">
+    <h3>Куда сходить</h3>
+    <span class="line"> </span>
+    <div class="activity_box">
+        <div class="scrollbar" id="style-2">
+            {#if !loading}
+            {#each items as item, index}
+                <div class="activity-row" >
+                    <div class="activity-desc">
+                        <h5>{item.title} {index%2}</h5>
+                        <p>{item.address}</p>
+                        <p>{item.type}</p>
+                        <h6>Tel: {item.phone}</h6>
+                    </div>
+                </div>
+            {/each}
+            {/if}
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    import Loader from '../icons/Loader.html';
+    export default {
+        components: {
+            Loader
+        },
+
+        oncreate() {
+			this.getItems();
+        },
+        
+        methods: {
+			async getItems() {
+                this.set({ loading: true });
+                this.set({ items: [] });
+                const id = 1;
+                const items = await fetch(
+                    `https://raw.githubusercontent.com/nikolay-ermolenko/learn-angular/weather-widget/src/mocks/items.json`
+                ).then(r => r.json())
+                 .then((r) => {
+                     const delay = setTimeout(() => {
+                         this.set({ loading: false });
+                         this.set({ items: r.data });
+                         clearTimeout(delay);
+                        }, 500);
+                    });
+                    
+                
+            }
+        }
+    };
+</script>
+
+<style>
+ .ele-strip {
+    background: #fda660;
+    padding: 1em 1em;
+    margin: -3px 0px 0px 0px;
+ }
+ .village {
+    background: #fff;
+    padding: 1.5em 1em;
+    border-radius: 0px 0px 5px 5px;
+ }
+ h3 {
+    text-align: center;
+    font-size: 0.95em;
+    color: #000;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+span.line {
+    background: url("assets/images/line.png")no-repeat;
+    width: 103px;
+    height: 2px;
+    display: block;
+    margin: 0.6em auto 0em;
+}
+ul {
+    text-align: center;
+}
+li {
+    display: inline-block;
+    padding: 0em 0.5em;
+    border-right: 1px solid #fff;
+}
+li.anc-bor {
+    border-right: none;
+}
+
+ .activity_box{
+    background: #fff;
+    min-height: 156px;
+ }
+ .activity-row {
+    text-align: left;
+    margin-bottom:1em;
+    padding: 1em 1em 0em 1em;
+ }
+ .activity-desc h5 {
+    color:#000;
+    font-size:1em;
+    font-weight:500;
+    margin-bottom: 5px;
+}
+.activity-desc p {
+    color:#999;
+    font-size:0.94em;
+    line-height:1.7em;
+}
+.activity-desc h6 {
+    color: #fd7b87;
+    font-size: 13px;
+    margin: 13px 0 0 0;
+    font-weight: bold;
+}
+
+ .scrollbar{
+    height:155px;
+    background:#fff;
+    overflow-y: scroll;
+ }
+ #style-2::-webkit-scrollbar-track
+{                
+    background-color:#f0f0f0;
+}
+#style-2::-webkit-scrollbar
+{
+    width:5px;
+    background-color: #f5f5f5;
+}
+#style-2::-webkit-scrollbar-thumb
+{                
+    background-color:#fda660;
+}
+</style>

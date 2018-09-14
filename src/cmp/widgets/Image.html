@@ -1,0 +1,35 @@
+<div class="element-bg-img">
+    {#if selectedItem}
+        <img src="{selectedItem ? selectedItem.bgImage : ''}" 
+        alt="" 
+        class="img-responsiveg">
+    {:else}
+        <div class="img-responsive">
+            <Icons type="mountain" width="130px" height="130px" opacity=".4" fill="white"/>
+        </div>
+    {/if}
+</div>
+
+<script type="text/javascript">
+    import Icons from '../icons/Icons.html';
+    
+    export default {
+        components: {
+            Icons
+        }
+    };
+</script>
+
+         
+<style>
+.element-bg-img img {
+  border-radius: 6px 6px 0px 0px;
+    height: 190px;
+    width: 100%;
+}
+.element-bg-img div {
+  border-radius: 6px 6px 0px 0px;
+  height: 150px;
+  background-color: #ed9650;
+}
+</style>

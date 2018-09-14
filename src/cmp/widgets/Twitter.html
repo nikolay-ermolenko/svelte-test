@@ -1,0 +1,83 @@
+<div class="teddy-bear">
+    <div class="teddy-text">
+        {#if selectedItem}
+            <h4>{selectedItem ? selectedItem.twiAcc : ''}</h4>
+            <span class="w-line"> </span>
+            <img src="{twiImgPath}{selectedItem ? selectedItem.twiImage : ''}" alt="" class="img-responsive">
+        {:else}
+            <Icons type="twitter" width="130px" height="130px" opacity=".4" fill="white"/>
+        {/if}
+    </div>
+    <div class="teddy-follow">
+        <ul>
+            <li class="folw-h">
+                <h3>{selectedItem ? selectedItem.twiFollowers : ''}</h3>
+                <p>Followers</p>
+            </li>
+            <li>
+                <h3>{selectedItem ? selectedItem.twiFollowing : ''}</h3>
+                <p>Following</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    import Icons from '../icons/Icons.html';
+    
+    export default {
+        components: {
+            Icons
+        }
+    };
+</script>
+            
+<style>
+.teddy-bear {
+    text-align: center;
+}
+.teddy-text {
+    background: #fd7b87;
+    padding: 1.2em 1em;
+    border-radius: 5px 5px 0px 0px;
+}
+span.w-line {
+    background: url("assets/images/w-line.png")no-repeat;
+    width: 103px;
+    height: 2px;
+    display: block;
+    margin:0.73em auto 0.72em;
+}
+img {
+    border-radius: 50%;
+    width: 93;
+    height: 93px;
+    border: 3px solid #fff;
+    padding: 0;
+}
+h4 {
+    color: #fff;
+}
+.teddy-follow {
+    background: #f2f1ef;
+    padding: 0.7em 0em 0.7em 0em;
+    border-radius: 0px 0px 4px 4px;
+}
+li {
+    display: inline-block;
+    padding:0em 0.9em;
+}
+li.folw-h {
+    border-right: 1px solid #000;
+}
+h3 {
+    font-size: 0.95em;
+    color: #000;
+    font-weight: bold;
+}
+p {
+    font-size: 0.8em;
+    color: #8A8A8A;
+}
+</style>

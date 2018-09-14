@@ -1,0 +1,59 @@
+<div class="temperatur">
+    {#if selectedItem}
+        <h5>{selectedItem ? selectedItem.title : ''}</h5>
+        <span class="w-line"> </span>
+        <Icons type="{selectedItem ? selectedItem.icon : ''}" width="52px" height="52px" opacity="1" fill="white"/>
+        <h2>{selectedItem ? selectedItem.airTemp : ''}
+            <sup class="degree">°</sup>
+        </h2>
+        <h6>Water {selectedItem ? selectedItem.waterTemp : ''}
+            <sup class="degree">°</sup>
+        </h6>
+    {:else}
+        <Icons type="cloudy" width="130px" height="130px" opacity=".4" fill="white"/>
+    {/if}
+</div>
+
+<script type="text/javascript">
+import Icons from '../icons/Icons.html';
+
+export default {
+    components: {
+        Icons
+    }
+};
+</script>
+        
+<style>
+.temperatur {
+    background: #5fb3f9;
+    text-align: center;
+    padding: 1em 1em;
+    border-radius: 5px;
+    margin-bottom: 2.5em;
+    min-height: 162px;
+}
+h5 {
+    color: #fff;
+    font-size: 1em;
+}
+h2 {
+    color: #fff;
+    font-size: 3.2em;
+    display: inline-block;
+    vertical-align: top;
+    font-family: 'Roboto', sans-serif;
+}
+h6 {
+    font-size: 1em;
+    color: #fff;
+    margin:1em 0em 0em 0em;
+}
+span.w-line {
+    background: url("assets/images/w-line.png")no-repeat;
+    width: 103px;
+    height: 2px;
+    display: block;
+    margin:0.73em auto 0.72em;
+}
+</style>

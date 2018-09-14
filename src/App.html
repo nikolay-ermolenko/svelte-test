@@ -1,25 +1,143 @@
-<h1>Hello,
-    <b>{name}</b>
-</h1>
-<Button />
-<Button />
-<script>
-    import Button from './cmp/button/Button.html';
+<h1>Hot Weather Widget</h1>
+<div class="element">
+    <div class="element-left">
+        <WidgetImage selectedItem="{selectedItem}"/>
+        <WidgetList items="{items}"/>
+    </div>
+    <div class="element-right">
+        <WidgetWeather selectedItem="{selectedItem}"/>
+        <WidgetTwitter selectedItem="{selectedItem}" twiImgPath="{twiImgPath}" />
+    </div>
+    <div class="clear"> </div>
+</div>
 
-    export default {
-        components: {Button},
-        data() {
-            return {
-                name: 'My Name'
-            };
-        },
-        computed: { }
-    };
+<div class="copy-right">
+    <p>© 2015 Hot Weather Widget. All rights reserved | Design by
+        <a href="http://w3layouts.com/" target="_blank"> W3layouts </a>
+    </p>
+</div>
+
+<script>
+
+import WidgetImage from './cmp/widgets/Image.html';
+import WidgetWeather from './cmp/widgets/Weather.html';
+import WidgetList from './cmp/widgets/List.html';
+import WidgetTwitter from './cmp/widgets/Twitter.html';
+
+export default {
+    components: {
+        WidgetImage,
+        WidgetWeather,
+        WidgetList,
+        WidgetTwitter
+    },
+    computed: {
+        selectedItem: ({ selectedItem2 }) => selectedItem2
+    }
+};
 </script>
 
-
 <style>
-    b {
-        color: red;
+.element {
+  width: 40%;
+  margin: 0 auto 7em;
+}
+.element-left {
+  float: left;
+  width:50%;
+}
+.element-right {
+  float: right;
+   width: 35%;
+}
+
+
+.copy-right {
+  text-align: center;
+  padding:0em 0em 2em 0em;
+}
+.copy-right p {
+  font-size: 1em;
+  color: #fff;
+  line-height: 1.6em;
+}
+.copy-right p a{
+    color: #fd7b87;
+}
+.copy-right p a:hover{
+    color: #fff;
+    text-decoration:none;
+}
+
+@media(max-width:1440px){
+    .element-right {
+        width: 40%;
     }
+    .element {
+        width: 43%;
+    }
+}
+@media(max-width:1366px){
+    .element-left {
+        width: 55%;
+    }
+    .element {
+        width: 44%;
+    }
+}
+@media(max-width:1280px){
+    .element {
+        width: 47.5%;
+    }
+}
+@media(max-width:1024px){
+    .element {
+    width: 58.5%;
+    }
+}
+@media(max-width:768px){
+    .element {
+        width: 76.5%;
+    }
+}
+
+@media(max-width:667px){
+    .element {
+        width: 85.5%;
+    }
+}
+@media(max-width:640px){
+    .element {
+        width: 90.5%;
+    }
+}
+
+@media(max-width:600px){
+    .element {
+        width: 94.5%;
+    }
+}
+@media(max-width:568px){
+    .element {
+        width: 98%;
+    }
+}
+@media(max-width:480px){
+    .element-left {
+        width: 100%;
+        float: none;
+    }
+    .element-right {
+        width: 100%;
+        float: none;
+        margin: 1.5em 0em 0em 0em;
+    }
+    .element {
+        width: 80%;
+    }
+    h1 {
+        font-size: 1.8em;
+        margin: 1.5em 0em 1em 0em;
+    }
+}
 </style>
